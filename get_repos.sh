@@ -6,8 +6,9 @@
 # DATE: 2024-05-05
 # DESC: Script to get a list of repositories from GES. Assumes that the number of
 #       repositories spans multiple URL pages, so uses the "last" page reference
-#       to step through all the pages. In this script we define the per_page qty
-#       to avoid surprises
+#       in the header of each URL to calculate the number of pages and step through
+#       all of them. In this script we define the "per_page" qty as default of 30
+#       to avoid surprises.
 
 # NOTE:
 # Untested syntax of api for orgs in enterprise
@@ -23,7 +24,7 @@
 echo -e "\n$(basename $0) : started $(date)"
 
 PAT=$(awk '/auth_clientx/{ print $NF }' ~/.creds)
-PERP=2
+PERP=30
 NEXT=1
 LAST=1
 BASE="."
